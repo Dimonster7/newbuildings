@@ -136,7 +136,7 @@ h3{
     display: flex;
     justify-content: space-between;
     box-shadow: 3px 3px 7px #808080;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 }
 
 .button1 {
@@ -163,15 +163,15 @@ h3{
 }
 
 .objavlenie {
-    //border: 1px solid #33ADFF;
-    display: flex;
+    /* border: 1px solid #33ADFF; */
+    /* display: flex; */
     font-size: 22px;
     line-height: 1.5;
     box-shadow: 3px 3px 17px #808080;
 }
 
 .photo {
-    //border: 1px solid #33ADFF;
+    /* border: 1px solid #33ADFF; */
     display: flex;
     padding: 10px;
     justify-content: center; /*���������� ������� �� ����������� */
@@ -190,7 +190,7 @@ h3{
 }
 
 .osninf {
-    //border: 1px solid red;
+    /* border: 1px solid red; */
     line-height: 1.5;
 }
 
@@ -222,9 +222,9 @@ h3{
 
 .infpr {
     font-size: 24px;
-    display: flex;
-    //border: 1px solid lime;
-    float: left;
+    /* display: flex; */
+    /* border: 1px solid lime; */
+    /* float: left; */
     margin-top: 10px;
     font-weight: bold;
 }
@@ -235,7 +235,7 @@ h3{
 }
 
 .infozas {
-    //border: 1px solid black;
+    /* border: 1px solid black; */
     display: inline-block;
     padding: 30px;
     padding-right: 50px;
@@ -248,7 +248,7 @@ h3{
 .zas {
     display: flex;
     justify-content: center;
-    //border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .infrh ul li:before {
@@ -265,9 +265,9 @@ h3{
 }
 
 .strs {
-    background-color: #fff;
+    /* background-color: #fff; */
     font-size: 22px;
-    margin: 15px 0px 15px 25px;
+    /* margin: 15px 0px 15px 25px; */
 }
 
 .ps:hover::after {
