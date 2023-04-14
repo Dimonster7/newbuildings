@@ -151,12 +151,11 @@ class BuildingsController extends Controller
                 $where.=" AND nalbl = \"".$req->nalbl."\"";
             }
         }
-        //dd($where);
-        //dump($where);
+                
         //return redirect()->route('main');
         $f = 1;
         $builders = DB::table('builder')->get();
-        if ($where != ""){
+        if ($where != "" && !$req->clear){
           $novostroyki = DB::select('select * from objavleniya where '.$where.' order by price');
           $f = 2;
         }

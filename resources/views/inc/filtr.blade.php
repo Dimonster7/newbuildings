@@ -206,15 +206,21 @@ $error_cre = "";
             <div class="other" data-title="Выберите отделку квартиры">
                 <h3>Отделка</h3>
                 <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <label><input class="mr-1" name="otdelka" type="radio" value="черновая" <?php if ((isset($_POST["view"])) && ($_POST["otdelka"] == 'черновая')) echo "checked";?>>Черновая</label>
-                    <label class="ml-2"><input class="mr-1" name="otdelka" type="radio" value="чистовая" <?php if ((isset($_POST["view"])) && ($_POST["otdelka"] == 'чистовая')) echo "checked";?>>Чистовая</label>
+                    <label>
+                        <input class="mr-1" name="otdelka" type="radio" value="черновая" <?php if (isset($_POST["view"])) if(isset($_POST["otdelka"]) && $_POST["otdelka"] == 'черновая') echo "checked";?>>
+                        Черновая
+                    </label>
+                    <label class="ml-2">
+                        <input class="mr-1" name="otdelka" type="radio" value="чистовая" <?php if (isset($_POST["view"])) if(isset($_POST["otdelka"]) && $_POST["otdelka"] == 'чистовая') echo "checked";?>>
+                        Чистовая
+                    </label>
                     <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Выберите отделку квартиры</p>
                 </span>
             </div>
             <div class="other">
                 <h3>Наличие балкона/лоджии</h3>
-                <label><input class="mr-1" name="nalbl" type="radio" value="балкон" <?php if ((isset($_POST["view"])) && ($_POST["nalbl"] == 'балкон')) echo "checked";?>>Балкон</label>
-                <label class="ml-2"><input class="mr-1" name="nalbl" type="radio" value="лоджия" <?php if ((isset($_POST["view"])) && ($_POST["nalbl"] == 'лоджия')) echo "checked";?>>Лоджия</label>
+                <label><input class="mr-1" name="nalbl" type="radio" value="балкон" <?php if (isset($_POST["view"])) if(isset($_POST["nalbl"]) && $_POST["nalbl"] == 'балкон') echo "checked";?>>Балкон</label>
+                <label class="ml-2"><input class="mr-1" name="nalbl" type="radio" value="лоджия" <?php if (isset($_POST["view"])) if(isset($_POST["nalbl"]) && $_POST["nalbl"] == 'лоджия') echo "checked";?>>Лоджия</label>
             </div>
         </div>
     </div>
