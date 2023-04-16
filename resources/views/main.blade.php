@@ -5,7 +5,7 @@
 @section('content')
 {{-- <div class="body"> --}}
 <div class="mx-64 mt-20 mb-14">
-  @if($f == 2)
+  @if(url()->current() == route('filtr-form'))
   <div class="strs">
       <label>По Вашему запросу нашлось объявлений: {{ count($data)}}</label>
     </div>
@@ -22,7 +22,7 @@
     @foreach($builders as $builder)
       @if ($elem->builder == $builder->builder)
       {{-- <hr /> --}}
-    <div class="objavlenie flex justify-between rounded-xl mx-3 my-3">
+    <div class="objavlenie flex justify-between rounded-xl mx-3 my-3 bg-white">
         <div class="flex">
             <div class="photo">
                 <img src= "{{ $elem->photo }}" width=300 />
@@ -73,7 +73,7 @@
 @endforeach
 </div>
 
-@if($f == 0)
+@if(!is_array($data))
 <div class="flex justify-center">
     <div class="py-4">
     {{ $data->links() }}

@@ -9,166 +9,91 @@ use Illuminate\Support\Facades\DB;
 
 class BuildingsController extends Controller
 {
-    public function submit(FiltrRequest $req){
-        //dd($req->ip());
-        //global $where;
-        $where = "";
+    public function submit(FiltrRequest $req){      
+                
+        $novostroyki = DB::table('objavleniya');
+        
         if (($req->price_start != null)){
-            if ($where == ""){
-                $where.="price >= ".$req->price_start;
-            }
+            $novostroyki->where('price', '>=', $req->price_start);
         }
         if (($req->price_end != null)){
-            if ($where == ""){
-                $where.="price <= ".$req->price_end;
-            } else {
-                $where.=" AND price <= ".$req->price_end;
-            }
+            $novostroyki->where('price', '<=', $req->price_end);
         }
         if (($req->squaretotal_start != null)){
-            if ($where == ""){
-                $where.="squaretotal >= ".$req->squaretotal_start;
-            } else {
-                $where.=" AND squaretotal >= ".$req->squaretotal_start;
-            }
+            $novostroyki->where('squaretotal', '>=', $req->squaretotal_start);
         }
         if (($req->squaretotal_end != null)){
-            if ($where == ""){
-                $where.="squaretotal <= ".$req->squaretotal_end;
-            } else {
-                $where.=" AND squaretotal <= ".$req->squaretotal_end;
-            }
+            $novostroyki->where('squaretotal', '<=', $req->squaretotal_end);
         }
         if (($req->squarelive_start != null)){
-            if ($where == ""){
-                $where.="squarelive >= ".$req->squarelive_start;
-            } else {
-                $where.=" AND squarelive >= ".$req->squarelive_start;
-            }
+            $novostroyki->where('squarelive', '>=', $req->squarelive_start);
         }
         if (($req->squarelive_end != null)){
-            if ($where == ""){
-                $where.="squarelive <= ".$req->squarelive_end;
-            } else {
-                $where.=" AND squarelive <= ".$req->squarelive_end;
-            }
+            $novostroyki->where('squarelive', '<=', $req->squarelive_end);
         }
         if (($req->rajon != null)){
-            if ($where == ""){
-                $where.="rajon = \"".$req->rajon."\"";
-            } else {
-                $where.=" AND rajon = \"".$req->rajon."\"";
-            }
+            $novostroyki->where('rajon', $req->rajon);
         }
         if (($req->GK != null)){
-            if ($where == ""){
-                $where.="GK = \"".$req->GK."\"";
-            } else {
-                $where.=" AND GK = \"".$req->GK."\"";
-            }
+            $novostroyki->where('GK', $req->GK);
         }
         if (($req->street != null)){
-            if ($where == ""){
-                $where.="street = \"".$req->street."\"";
-            } else {
-                $where.=" AND street = \"".$req->street."\"";
-            }
+            $novostroyki->where('street', $req->street);
         }
         if (($req->numberhouse != null)){
-            if ($where == ""){
-                $where.="numberhouse = ".$req->numberhouse;
-            } else {
-                $where.=" AND numberhouse = ".$req->numberhouse;
-            }
+            $novostroyki->where('numberhouse', $req->numberhouse);
         }
         if (($req->yearhouse != null)){
-            if ($where == ""){
-                $where.="yearhouse = ".$req->yearhouse;
-            } else {
-                $where.=" AND yearhouse = ".$req->yearhouse;
-            }
+            $novostroyki->where('yearhouse', $req->yearhouse);
         }
         if (($req->typehouse != null)){
-            if ($where == ""){
-                $where.="typehouse = \"".$req->typehouse."\"";
-            } else {
-                $where.=" AND typehouse = \"".$req->typehouse."\"";
-            }
+            $novostroyki->where('typehouse', $req->typehouse);
         }
         if (($req->levelhouse_start != null)){
-            if ($where == ""){
-                $where.="levelhouse >= ".$req->levelhouse_start;
-            } else {
-                $where.=" AND levelhouse >= ".$req->levelhouse_start;
-            }
+            $novostroyki->where('levelhouse', '>=', $req->levelhouse_start);
         }
         if (($req->levelhouse_end != null)){
-            if ($where == ""){
-                $where.="levelhouse <= ".$req->levelhouse_end;
-            } else {
-                $where.=" AND levelhouse <= ".$req->levelhouse_end;
-            }
+            $novostroyki->where('levelhouse', '<=', $req->levelhouse_end);
         }
         if (($req->level_start != null)){
-            if ($where == ""){
-                $where.="level >= ".$req->level_start;
-            } else {
-                $where.=" AND level >= ".$req->level_start;
-            }
+            $novostroyki->where('level', '>=', $req->level_start);
         }
         if (($req->level_end != null)){
-            if ($where == ""){
-                $where.="level <= ".$req->level_end;
-            } else {
-                $where.=" AND level <= ".$req->level_end;
-            }
+            $novostroyki->where('level', '<=', $req->level_end);
         }
         if (($req->countroom_start != null)){
-            if ($where == ""){
-                $where.="countroom >= ".$req->countroom_start;
-            } else {
-                $where.=" AND countroom >= ".$req->countroom_start;
-            }
+            $novostroyki->where('countroom', '>=', $req->countroom_start);
         }
         if (($req->countroom_end != null)){
-            if ($where == ""){
-                $where.="countroom <= ".$req->countroom_end;
-            } else {
-                $where.=" AND countroom <= ".$req->countroom_end;
-            }
+            $novostroyki->where('countroom', '<=', $req->countroom_end);
         }
         if (($req->otdelka != null)){
-            if ($where == ""){
-                $where.="otdelka = \"".$req->otdelka."\"";
-            } else {
-                $where.=" AND otdelka = \"".$req->otdelka."\"";
-            }
+            $novostroyki->where('otdelka', $req->otdelka);
         }
         if (($req->nalbl != null)){
-            if ($where == ""){
-                $where.="nalbl = \"".$req->nalbl."\"";
-            } else {
-                $where.=" AND nalbl = \"".$req->nalbl."\"";
-            }
+            $novostroyki->where('nalbl', $req->nalbl);
         }
                 
-        //return redirect()->route('main');
-        $f = 1;
+        // //return redirect()->route('main');        
         $builders = DB::table('builder')->get();
-        if ($where != "" && !$req->clear){
-          $novostroyki = DB::select('select * from objavleniya where '.$where.' order by price');
-          $f = 2;
+        // if ($where != "" && !$req->clear){
+        //   $novostroyki = DB::select('select * from objavleniya where '.$where.' order by price');
+        // }
+        // else
+        // //   $novostroyki = DB::select('select * from objavleniya order by price');
+        //     $novostroyki = DB::table('objavleniya')->orderBy('GK')->paginate(10);
+        $novostroyki = $novostroyki->orderBy('price')->paginate(10);        
+        if($req->clear){
+            $novostroyki = DB::table('objavleniya')->orderBy('GK')->paginate(10);
         }
-        else
-          $novostroyki = DB::select('select * from objavleniya order by price');
-        return view('main', ['data' => $novostroyki, 'builders' => $builders, 'f' => $f]);
+        
+        return view('main', ['data' => $novostroyki, 'builders' => $builders]);
     }
 
     public function all(){
-      //global $where;
-      //dd($where);
+      //global $where;      
       $builders = DB::table('builder')->get();
-      $novostroyki = DB::table('objavleniya')->orderBy('GK')->paginate(10);
+      $novostroyki = DB::table('objavleniya')->orderBy('GK')->paginate(10);      
       //$novostroyki = Novostroyki::all();
       //dump($GLOBALS['where']);
 
@@ -184,7 +109,7 @@ class BuildingsController extends Controller
       //     }
       //   }
       // }
-        return view('main', ['data' => $novostroyki, 'builders' => $builders, 'f' => 0]);
+        return view('main', ['data' => $novostroyki, 'builders' => $builders]);
     }
 
     public function help(){

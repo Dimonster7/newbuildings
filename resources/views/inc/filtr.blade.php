@@ -1,84 +1,86 @@
-<?php
-$error = false;
-$error_ps = "";
-$error_pe = "";
-$error_sts = "";
-$error_ste = "";
-$error_sls = "";
-$error_sle = "";
-$error_nh = "";
-$error_yh = "";
-$error_lhs = "";
-$error_lhe = "";
-$error_ls = "";
-$error_le = "";
-$error_crs = "";
-$error_cre = "";
-?>
-
-@if($errors->any())
-  <div class="alert alert-danger">
-    <ul>
-      @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div>
-@endif
-
 <form name="filtr" action="{{ route('filtr-form') }}" method="post">
   @csrf
     <div class="filtr">
         <div class="wrapper border-b-2 border-emerald-500">
             <div class="sb"></div>
 
-            <div class="price">
+            <div class="price">                
                 <h3>Цена (руб.)</h3>
-                <label class="price1" data-title="Введите минимальную цену">от:</label>
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_ps) echo "class=\"cf\""?> name="price_start" type="text" size="15" value="<?php if (isset($_POST["view"])) echo $_POST["price_start"]?>"/>
-                    <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите минимальную цену</p>
-                </span>
-                <span <?php if ($error_ps) echo "class=\"error\""?> style="color:red"><?=$error_ps?></span>
-                
-                <label class="price1" data-title="Введите максимальную цену">до:</label>                
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_pe) echo "class=\"cf\""?> name="price_end" type="text" size="15" value="<?php if (isset($_POST["view"])) echo $_POST["price_end"]?>"/>
-                    <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальную цену</p>
-                </span>
-                <span <?php if ($error_pe) echo "class=\"error\""?> style="color:red"><?=$error_pe?></span>
+                <div class="flex">
+                    <div>
+                        <label class="price1" data-title="Введите минимальную цену">от:</label>
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('price_start') cf @enderror" name="price_start" type="text" size="15" value="@if(isset($_POST['view'])) {{ $_POST['price_start'] }} @else {{ old('price_start') }} @endif"/>
+                            <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите минимальную цену</p>                    
+                        </span>
+                        @error('price_start')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
+                    <div>
+                        <label class="price1" data-title="Введите максимальную цену">до:</label>                
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('price_end') cf @enderror" name="price_end" type="text" size="15" value="@if(isset($_POST['view'])) {{ $_POST['price_end'] }} @else {{ old('price_end') }} @endif"/>
+                            <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальную цену</p>
+                        </span>
+                        @error('price_end')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
             </div>
             <div class="square">
                 <h3>Общая площадь (м<sup><small>2</small></sup>)</h3>
-                <label class="price1" data-title="Введите минимальную площадь">от:</label>                    
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_sts) echo "class=\"cf\""?> name="squaretotal_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["squaretotal_start"]?>"/>
-                    <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите минимальную площадь</p>
-                </span>
-                <span <?php if ($error_sts) echo "class=\"error\""?> style="color:red"><?=$error_sts?></span>
-                
-                <label class="price1" data-title="Введите максимальную площадь">до:</label>                    
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_ste) echo "class=\"cf\""?> name="squaretotal_end" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["squaretotal_end"]?>"/>
-                    <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальную площадь</p>
-                </span>
-                <span <?php if ($error_ste) echo "class=\"error\""?> style="color:red"><?=$error_ste?></span>
+                <div class="flex">
+                    <div>
+                        <label class="price1" data-title="Введите минимальную площадь">от:</label>                    
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('squaretotal_start') cf @enderror" name="squaretotal_start" type="text" size="5" value="@if(isset($_POST['view'])) {{ $_POST['squaretotal_start'] }} @else {{ old('squaretotal_start') }} @endif"/>
+                            <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите минимальную площадь</p>
+                        </span>
+                        @error('squaretotal_start')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
+                    <div>
+                        <label class="price1" data-title="Введите максимальную площадь">до:</label>                    
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('squaretotal_end') cf @enderror" name="squaretotal_end" type="text" size="5" value="@if(isset($_POST['view'])) {{ $_POST['squaretotal_end'] }} @else {{ old('squaretotal_end') }} @endif"/>
+                            <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальную площадь</p>
+                        </span>
+                        @error('squaretotal_end')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
             </div>
             <div class="square">
                 <h3>Жилая площадь (м<sup><small>2</small></sup>)</h3>
-                <label class="price1" data-title="Введите минимальную площадь">от:</label>                    
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_sls) echo "class=\"cf\""?> name="squarelive_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["squarelive_start"]?>"/>
-                    <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите минимальную площадь</p>
-                </span>
-                <span <?php if ($error_sls) echo "class=\"error\""?> style="color:red"><?=$error_sls?></span>
-                
-                <label class="price1" data-title="Введите максимальную площадь">до:</label>                    
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_sle) echo "class=\"cf\""?> name="squarelive_end" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["squarelive_end"]?>"/>
-                    <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальную площадь</p>
-                </span>
-                <span <?php if ($error_sle) echo "class=\"error\""?> style="color:red"><?=$error_sle?></span>
+                <div class="flex">
+                    <div>
+                        <label class="price1" data-title="Введите минимальную площадь">от:</label>                    
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('squarelive_start') cf @enderror" name="squarelive_start" type="text" size="5" value="@if(isset($_POST['view'])) {{ $_POST['squarelive_start'] }} @else {{ old('squarelive_start') }} @endif"/>
+                            <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите минимальную площадь</p>
+                        </span>
+                        @error('squarelive_start')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
+                    <div>
+                        <label class="price1" data-title="Введите максимальную площадь">до:</label>                    
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('squarelive_end') cf @enderror" name="squarelive_end" type="text" size="5" value="@if(isset($_POST['view'])) {{ $_POST['squarelive_end'] }} @else {{ old('squarelive_end') }} @endif"/>
+                            <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальную площадь</p>
+                        </span>
+                        @error('squarelive_end')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
             </div>
         </div>
         <div class="wrapper flex items-center border-b-2 border-emerald-500">
@@ -120,10 +122,9 @@ $error_cre = "";
                 <h3>Номер дома</h3>
                 {{-- <label class="nh" data-title="Введите номер дома"></label> --}}
                 <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_nh) echo "class=\"cf\""?> name="numberhouse" type="text" size="12" value="<?php if (isset($_POST["view"])) echo $_POST["numberhouse"]?>">
+                    <input name="numberhouse" type="text" size="12" value="<?php if (isset($_POST["view"])) echo $_POST["numberhouse"]?>">
                     <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите номер дома</p>
-                </span>
-                <span <?php if ($error_nh) echo "class=\"error\""?> style="color:red"><?=$error_nh?></span>
+                </span>                
             </div>
         </div>
         <div class="wrapper flex items-center border-b-2 border-emerald-500">
@@ -134,10 +135,12 @@ $error_cre = "";
                 <h3>Год сдачи дома</h3>
                 {{-- <label class="yh" data-title="Введите год, в котором будет сдан дом"></label> --}}
                 <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_yh) echo "class=\"cf\""?> name="yearhouse" type="text" size="15" value="<?php if (isset($_POST["view"])) echo $_POST["yearhouse"]?>">
+                    <input class="@error('yearhouse') cf @enderror" name="yearhouse" type="text" size="15" value="<?php if (isset($_POST["view"])) echo $_POST["yearhouse"]?>">
                     <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите год, в котором будет сдан дом</p>
                 </span>
-                <span <?php if ($error_yh) echo "class=\"error\""?> style="color:red"><?=$error_yh?></span>
+                @error('yearhouse')
+                    <div class="error w-56">{{ $message }}</div>
+                @enderror
             </div>
             <div class="other">
                 <h3>Тип дома</h3>
@@ -155,18 +158,29 @@ $error_cre = "";
             </div>
             <div class="adress">
                 <h3>Этажность дома</h3>
-                <label class="price1" data-title="Введите минимальное количество этажей в доме">от:</label>
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_lhs) echo "class=\"cf\""?> name="levelhouse_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["levelhouse_start"]?>">
-                    <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите минимальное количество этажей в доме</p>
-                </span>
-                <span <?php if ($error_lhs) echo "class=\"error\""?> style="color:red"><?=$error_lhs?></span>
-                <label class="price1" data-title="Введите максимальное количество этажей в доме">до:</label>
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_lhe) echo "class=\"cf\""?> name="levelhouse_end" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["levelhouse_end"]?>"/>
-                    <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальное количество этажей в доме</p>
-                </span>
-                <span <?php if ($error_lhe) echo "class=\"error\""?> style="color:red"><?=$error_lhe?></span>
+                <div class="flex">
+                    <div>
+                        <label class="price1" data-title="Введите минимальное количество этажей в доме">от:</label>
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('levelhouse_start') cf @enderror" name="levelhouse_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["levelhouse_start"]?>">
+                            <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите минимальное количество этажей в доме</p>
+                        </span>
+                        @error('levelhouse_start')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+    
+                    <div>
+                        <label class="price1" data-title="Введите максимальное количество этажей в доме">до:</label>
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('levelhouse_end') cf @enderror" name="levelhouse_end" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["levelhouse_end"]?>"/>
+                            <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальное количество этажей в доме</p>
+                        </span>
+                        @error('levelhouse_end')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
             </div>
         </div>
         <div class="wrapper flex items-center border-b-2 border-emerald-500">
@@ -175,33 +189,55 @@ $error_cre = "";
             </div>
             <div class="adress">
                 <h3>Этаж</h3>
-                <label class="price1" data-title="Введите минимальный этаж в доме">от:</label>
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_ls) echo "class=\"cf\""?> name="level_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["level_start"]?>">
-                    <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите минимальный этаж в доме</p>
-                </span>
-                <span <?php if ($error_ls) echo "class=\"error\""?> style="color:red"><?=$error_ls?></span>
-                <label class="price1" data-title="Введите максимальный этаж в доме">до:</label>
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_le) echo "class=\"cf\""?> name="level_end" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["level_end"]?>"/>
-                    <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальный этаж в доме</p>
-                </span>
-                <span <?php if ($error_le) echo "class=\"error\""?> style="color:red"><?=$error_le?></span>
+                <div class="flex">
+                    <div>
+                        <label class="price1" data-title="Введите минимальный этаж в доме">от:</label>
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('level_start') cf @enderror" name="level_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["level_start"]?>">
+                            <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите минимальный этаж в доме</p>
+                        </span>
+                        @error('level_start')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+    
+                    <div>
+                        <label class="price1" data-title="Введите максимальный этаж в доме">до:</label>
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('level_end') cf @enderror" name="level_end" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["level_end"]?>"/>
+                            <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальный этаж в доме</p>
+                        </span>
+                        @error('level_end')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
             </div>
             <div class="other">
                 <h3>Количество комнат</h3>
-                <label class="price1" data-title="Введите минимальное количество комнат в квартире">от:</label>
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_crs) echo "class=\"cf\""?> name="countroom_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["countroom_start"]?>">
-                    <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальное количество комнат в квартире</p>
-                </span>
-                <span <?php if ($error_crs) echo "class=\"error\""?> style="color:red"><?=$error_crs?></span>
-                <label class="price1" data-title="Введите максимальное количество комнат в квартире">до:</label>
-                <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                    <input <?php if ($error_cre) echo "class=\"cf\""?> name="countroom_end" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["countroom_end"]?>"/>
-                    <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальное количество комнат в квартире</p>
-                </span>
-                <span <?php if ($error_cre) echo "class=\"error\""?> style="color:red"><?=$error_cre?></span></label>
+                <div class="flex">
+                    <div>
+                        <label class="price1" data-title="Введите минимальное количество комнат в квартире">от:</label>
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('countroom_start') cf @enderror" name="countroom_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["countroom_start"]?>">
+                            <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальное количество комнат в квартире</p>
+                        </span>
+                        @error('countroom_start')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+    
+                    <div>
+                        <label class="price1" data-title="Введите максимальное количество комнат в квартире">до:</label>
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('countroom_end') cf @enderror" name="countroom_end" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["countroom_end"]?>"/>
+                            <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите максимальное количество комнат в квартире</p>
+                        </span>
+                        @error('countroom_end')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
             </div>
             <div class="other" data-title="Выберите отделку квартиры">
                 <h3>Отделка</h3>

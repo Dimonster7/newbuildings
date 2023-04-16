@@ -24,19 +24,19 @@ class FiltrRequest extends FormRequest
     public function rules()
     {
         return [
-          /*'price_start' => 'numeric',//|nullable
-          'price_end' => 'numeric',
-          'squaretotal_start' => 'numeric',
-          'squaretotal_end' => 'numeric',
-          'squarelive_start' => 'numeric',
-          'squarelive_end' => 'numeric',
-          'yearhouse' => 'numeric',
-          'levelhouse_start' => 'numeric',
-          'levelhouse_end' => 'numeric',
-          'level_start' => 'numeric',
-          'level_end' => 'numeric',
-          'countroom_start' => 'numeric',
-          'countroom_end' => 'numeric'*/
+          'price_start' => 'numeric|nullable',
+          'price_end' => 'numeric|nullable',
+          'squaretotal_start' => 'numeric|nullable',
+          'squaretotal_end' => 'numeric|nullable',
+          'squarelive_start' => 'numeric|nullable',
+          'squarelive_end' => 'numeric|nullable',
+          'yearhouse' => 'numeric|nullable',
+          'levelhouse_start' => 'numeric|nullable',
+          'levelhouse_end' => 'numeric|nullable',
+          'level_start' => 'numeric|nullable',
+          'level_end' => 'numeric|nullable',
+          'countroom_start' => 'numeric|nullable',
+          'countroom_end' => 'numeric|nullable'
         ];
     }
 
