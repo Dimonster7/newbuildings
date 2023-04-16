@@ -7,11 +7,11 @@
 <div class="mx-64 mt-20 mb-14">
   @if(url()->current() == route('filtr-form'))
   <div class="strs">
-      <label>По Вашему запросу нашлось объявлений: {{ count($data)}}</label>
+      <label>По Вашему запросу нашлось объявлений: {{ $data->total() }}</label>
     </div>
   @endif
   
-  @if (count($data) == 0)
+  @if ($data->total() == 0)
       <div class="message rounded-xl mx-3 my-3">
           <label>Ничего не нашлось &#128546</label><br/>
           <label>Измените параметры поиска</label>
