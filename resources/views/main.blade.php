@@ -22,37 +22,37 @@
     @foreach($builders as $builder)
       @if ($elem->builder == $builder->builder)
       {{-- <hr /> --}}
-    <div class="objavlenie flex justify-between rounded-xl mx-3 my-3">
+    <div class="objavlenie flex justify-between rounded-xl mx-3 my-3 bg-white">
         <div class="flex">
             <div class="photo">
                 <img src= "{{ $elem->photo }}" width=300 />
             </div>
-            <div class="infoob">
-            <div class="">
-                <label class="font-bold text-emerald-500"> Жилой комплекс  &#171{{ $elem->GK }}&#187</label><br />
-                <label>{{ $elem->rajon }} район, улица {{ $elem->street }}, {{ $elem->numberhouse }}</label><br />
-            </div>
-            <div class="infrh">
-                <div class="infroom">
-                    <ul>
-                        <li>{{ $elem->countroom }}-комнатная квартира</li>
-                        <li>общая площадь {{ $elem->squaretotal }} м<sup><small>2</small></sup></li>
-                        <li>жилая площадь {{ $elem->squarelive }} м<sup><small>2</small></sup></li>
-                        <li>{{ $elem->level }}/{{ $elem->levelhouse }} этаж</li>
-                        <li>{{ $elem->nalbl }}</li>
-                    </ul>
+            <div class="infoob flex flex-col justify-between">
+                <div class="">
+                    <label class="font-bold text-emerald-500"> Жилой комплекс  &#171{{ $elem->GK }}&#187</label><br />
+                    <label>{{ $elem->rajon }} район, улица {{ $elem->street }}, {{ $elem->numberhouse }}</label><br />
                 </div>
-                <div class="infh">
-                    <ul>
-                        <li>тип дома: {{ $elem->typehouse }}</li>
-                        <li>год сдачи {{ $elem->yearhouse }}</li>
-                        <li>отделка {{ $elem->otdelka }}</li>
-                    </ul>
+                <div class="infrh flex mt-3">
+                    <div class="">
+                        <ul>
+                            <li>{{ $elem->countroom }}-комнатная квартира</li>
+                            <li>общая площадь {{ $elem->squaretotal }} м<sup><small>2</small></sup></li>
+                            <li>жилая площадь {{ $elem->squarelive }} м<sup><small>2</small></sup></li>
+                            <li>{{ $elem->level }}/{{ $elem->levelhouse }} этаж</li>
+                            <li>{{ $elem->nalbl }}</li>
+                        </ul>
+                    </div>
+                    <div class="ml-6">
+                        <ul>
+                            <li>тип дома: {{ $elem->typehouse }}</li>
+                            <li>год сдачи {{ $elem->yearhouse }}</li>
+                            <li>отделка {{ $elem->otdelka }}</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="infpr text-emerald-500">
-                <label> Цена {{ number_format($elem->price, 0, ',', ' ') }} &#8381</label><br />
-            </div>
+                <div class="infpr text-emerald-500 ">
+                    <label> Цена {{ number_format($elem->price, 0, ',', ' ') }} &#8381</label><br />
+                </div>
             </div>
         </div>
         <div class="mr-6 mt-4">

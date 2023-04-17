@@ -199,10 +199,10 @@ h3{
     font-weight: bold;
 }
 
-.infrh {
+/* .infrh {
     display: flex;
     //border: 1px solid red;
-}
+} */
 
 .infroom {
     //border: 1px solid green;
@@ -252,8 +252,9 @@ h3{
 }
 
 .infrh ul li:before {
-    content: "\2302";
+    content: "\27A4";
     margin-right: 5px;
+    font-size: 14px;
 }
 
 .message {
