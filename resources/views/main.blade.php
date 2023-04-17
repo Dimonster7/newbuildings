@@ -5,13 +5,13 @@
 @section('content')
 {{-- <div class="body"> --}}
 <div class="mx-64 mt-20 mb-14">
-  @if($f == 2)
+  @if(url()->current() == route('filtr-form'))
   <div class="strs">
-      <label>По Вашему запросу нашлось объявлений: {{ count($data)}}</label>
+      <label>По Вашему запросу нашлось объявлений: {{ $data->total() }}</label>
     </div>
   @endif
   
-  @if (count($data) == 0)
+  @if ($data->total() == 0)
       <div class="message rounded-xl mx-3 my-3">
           <label>Ничего не нашлось &#128546</label><br/>
           <label>Измените параметры поиска</label>
@@ -73,7 +73,7 @@
 @endforeach
 </div>
 
-@if($f == 0)
+@if(!is_array($data))
 <div class="flex justify-center">
     <div class="py-4">
     {{ $data->links() }}
