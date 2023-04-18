@@ -22,3 +22,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/help', 'BuildingsController@help')->name('help');
+
+Route::get('/edit', 'BuildingsController@editShow')->name('editShow');
+Route::post('/edit', 'BuildingsController@edit')->name('edit');

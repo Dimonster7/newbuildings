@@ -16,7 +16,7 @@
   @include('inc.header')
 
 {{-- если роут не справка --}}
-@if(url()->current() != route('help'))
+@if(url()->current() != route('help') && url()->current() != route('editShow'))
   @include('inc.filtr')
 @endif
 

@@ -115,4 +115,31 @@ class BuildingsController extends Controller
     public function help(){
         return view('help');
     }
+
+    public function editShow(){     
+        $builders = DB::table('builder')->get();
+        return view('edit', ['builders' => $builders]);
+    }
+
+    public function edit(FiltrRequest $req){
+        DB::table('objavleniya')->insert([
+            'price' => $req->price_start,           
+            'squaretotal' => $req->squaretotal_start,            
+            'squarelive' => $req->squarelive_start,            
+            'rajon' => $req->rajon,
+            'GK' => $req->GK,
+            'street' => $req->street,
+            'numberhouse' => $req->numberhouse,
+            'yearhouse' => $req->yearhouse,
+            'typehouse' => $req->typehouse,
+            'levelhouse' => $req->levelhouse_start,            
+            'level' => $req->level_start,            
+            'countroom' => $req->countroom_start,            
+            'otdelka' => $req->otdelka,
+            'nalbl' => $req->nalbl,
+            'builder' => $req->builder,
+            'photo' => 'img/logo.jpg'
+        ]);
+        return redirect()->route('editShow');
+    }
 }
