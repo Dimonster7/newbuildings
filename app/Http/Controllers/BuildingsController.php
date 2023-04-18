@@ -82,7 +82,7 @@ class BuildingsController extends Controller
         // else
         // //   $novostroyki = DB::select('select * from objavleniya order by price');
         //     $novostroyki = DB::table('objavleniya')->orderBy('GK')->paginate(10);
-        $novostroyki = $novostroyki->orderBy('price')->paginate(10);        
+        $novostroyki = $novostroyki->orderBy('price')->get();//->paginate(10);        
         if($req->clear){
             $novostroyki = DB::table('objavleniya')->orderBy('GK')->paginate(10);
         }

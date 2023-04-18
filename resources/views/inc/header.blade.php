@@ -34,5 +34,6 @@
         <li class=""><a href="#" class="">Новостройки</a></li>
         <li class=""><a href="#" class="">Застройщики</a></li>
         <li class=""><a href="{{ route('help') }}" class="">Справка</a></li>
+        <li class=""><a href="#" onclick="generatePDF()" class="" accesskey="o">Отчёт</a></li>
     </ul>
 </div>
