@@ -12,7 +12,7 @@
   @endif
   
   @if (count($data) == 0)
-      <div class="message rounded-xl mx-3 my-3">
+      <div class="message rounded-xl mx-3 my-3 bg-white">
           <label>Ничего не нашлось &#128546</label><br/>
           <label>Измените параметры поиска</label>
       </div>

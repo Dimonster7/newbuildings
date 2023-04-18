@@ -12,7 +12,7 @@
   <script src="js/topdf.js"></script>
   <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 </head>
-<body>
+<body id="invoice">
   @include('inc.header')
 
 {{-- если роут не справка --}}
