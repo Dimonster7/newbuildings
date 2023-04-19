@@ -30,11 +30,11 @@
 </div>
 <div class="menu bg-emerald-500 border-3 border-emerald-600 font-bold text-white">
     <ul class="mx-28 my-2 flex justify-around">
-        <li class=""><a href="{{ route('main') }}" class="">Главная</a></li>
+        <li class=""><a href="{{ route('main') }}" class="" accesskey="m">Главная</a></li>
         <li class=""><a href="#" class="">Новостройки</a></li>
         <li class=""><a href="#" class="">Застройщики</a></li>
-        <li class=""><a href="{{ route('editShow') }}" class="">Ввод данных</a></li>
-        <li class=""><a href="{{ route('help') }}" class="">Справка</a></li>
+        <li class=""><a href="{{ route('editShow') }}" class="" accesskey="a">Ввод данных</a></li>
+        <li class=""><a href="{{ route('help') }}" class="" accesskey="q">Справка</a></li>
         <li class=""><a href="#" onclick="generatePDF()" class="" accesskey="o">Отчёт</a></li>
     </ul>
 </div>
