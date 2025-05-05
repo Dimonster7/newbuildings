@@ -11,7 +11,9 @@
 |
 */
 
-Route::post('/', 'BuildingsController@submit')->name('filtr-form');
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'BuildingsController@all')->name('main');
 // Route::get('/all', function() {
 //   $builder = DB::table('builder')->get();

@@ -59,6 +59,19 @@
     //border-top: 1px solid #33ADFF;
 }
 
+.advertidement_photo {
+    float: left;
+    font-size: 18px;
+    //border: 1px solid #33ADFF;
+    display: inline-block;
+    padding: 15px;
+    padding-left: 30px;
+    padding-bottom: 15px;
+    background-color: #fff;
+    //border-bottom: 1px solid #33ADFF;
+    //border-top: 1px solid #33ADFF;
+}
+
 .square {
     float: left;
     font-size: 18px;

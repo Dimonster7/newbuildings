@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="mb-24">
-<form action="{{ route('edit') }}" method="post">
+<form action="{{ route('edit') }}" method="post" enctype="multipart/form-data">
     @csrf
       <div class="filtr">
           <div class="wrapper border-b-2 border-emerald-500">
@@ -16,24 +16,38 @@
                   <div class="flex">
                       <div>
                           <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                              <input class="@error('price_start') cf @enderror" name="price_start" type="text" size="15" required value="@if(isset($_POST['view'])) {{ $_POST['price_start'] }} @else {{ old('price_start') }} @endif"/>
+                              <input class="@error('price') cf @enderror" name="price" type="text" size="15" required value="@if(isset($_POST['view'])) {{ $_POST['price'] }} @else {{ old('price') }} @endif"/>
                               <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите цену</p>                    
                           </span>
-                          @error('price_start')
+                          @error('price')
                               <div class="error w-56">{{ $message }}</div>
                           @enderror
                       </div>
                   </div>
               </div>
+              <div class="advertidement_photo">                
+                <h3>Фото</h3>
+                <div class="flex">
+                    <div>
+                        <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
+                            <input class="@error('photo') cf @enderror" name="photo" type="file" accept="image/*, text/*" value="@if(isset($_POST['view'])) {{ $_POST['photo'] }} @else {{ old('photo') }} @endif"/>
+                            <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Загрузити фото</p>                    
+                        </span>
+                        @error('photo')
+                            <div class="error w-56">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
               <div class="square">
                   <h3>Общая площадь (м<sup><small>2</small></sup>)</h3>
                   <div class="flex">
                       <div>                
                           <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                              <input class="@error('squaretotal_start') cf @enderror" name="squaretotal_start" type="text" size="5" value="@if(isset($_POST['view'])) {{ $_POST['squaretotal_start'] }} @else {{ old('squaretotal_start') }} @endif"/>
+                              <input class="@error('squaretotal') cf @enderror" name="squaretotal" type="text" size="5" value="@if(isset($_POST['view'])) {{ $_POST['squaretotal'] }} @else {{ old('squaretotal') }} @endif"/>
                               <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите площадь</p>
                           </span>
-                          @error('squaretotal_start')
+                          @error('squaretotal')
                               <div class="error w-56">{{ $message }}</div>
                           @enderror
                       </div>
@@ -44,10 +58,10 @@
                   <div class="flex">
                       <div>     
                           <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                              <input class="@error('squarelive_start') cf @enderror" name="squarelive_start" type="text" size="5" value="@if(isset($_POST['view'])) {{ $_POST['squarelive_start'] }} @else {{ old('squarelive_start') }} @endif"/>
+                              <input class="@error('squarelive') cf @enderror" name="squarelive" type="text" size="5" value="@if(isset($_POST['view'])) {{ $_POST['squarelive'] }} @else {{ old('squarelive') }} @endif"/>
                               <p class="absolute bottom-full transform translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите площадь</p>
                           </span>
-                          @error('squarelive_start')
+                          @error('squarelive')
                               <div class="error w-56">{{ $message }}</div>
                           @enderror
                       </div>
@@ -132,10 +146,10 @@
                   <div class="flex">
                       <div>
                           <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                              <input class="@error('levelhouse_start') cf @enderror" name="levelhouse_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["levelhouse_start"]?>">
+                              <input class="@error('levelhouse') cf @enderror" name="levelhouse" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["levelhouse"]?>">
                               <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите количество этажей в доме</p>
                           </span>
-                          @error('levelhouse_start')
+                          @error('levelhouse')
                               <div class="error w-56">{{ $message }}</div>
                           @enderror
                       </div>
@@ -149,7 +163,7 @@
                             <select name="builder">
                                 <option value="" <?php if ((isset($_POST["view"])) && ($_POST["builder"] == '')) echo "selected";?>>Выбрать</option>
                                 @foreach($builders as $builder)
-                                    <option value="{{ $builder->builder }}" <?php if ((isset($_POST["view"])) && ($_POST["builder"] == 'кирпичный')) echo "selected";?>>{{ $builder->builder }}</option>                                
+                                    <option value="{{ $builder->id }}" <?php if ((isset($_POST["view"])) && ($_POST["builder"] == 'кирпичный')) echo "selected";?>>{{ $builder->builder }}</option>                                
                                 @endforeach
                             </select>
                             <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите наименование застройщика</p>
@@ -170,10 +184,10 @@
                   <div class="flex">
                       <div>
                           <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                              <input class="@error('level_start') cf @enderror" name="level_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["level_start"]?>">
+                              <input class="@error('level') cf @enderror" name="level" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["level"]?>">
                               <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите этаж в доме</p>
                           </span>
-                          @error('level_start')
+                          @error('level')
                               <div class="error w-56">{{ $message }}</div>
                           @enderror
                       </div>
@@ -184,10 +198,10 @@
                   <div class="flex">
                       <div>
                           <span x-data="{ tooltip: false }" x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="relative">
-                              <input class="@error('countroom_start') cf @enderror" name="countroom_start" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["countroom_start"]?>">
+                              <input class="@error('countroom') cf @enderror" name="countroom" type="text" size="5" value="<?php if (isset($_POST["view"])) echo $_POST["countroom"]?>">
                               <p class="absolute bottom-full transform -translate-x-2 mb-2 p-2 text-sm text-gray-500 bg-white rounded-md shadow border" x-cloak x-show="tooltip">Введите количество комнат в квартире</p>
                           </span>
-                          @error('countroom_start')
+                          @error('countroom')
                               <div class="error w-56">{{ $message }}</div>
                           @enderror
                       </div>

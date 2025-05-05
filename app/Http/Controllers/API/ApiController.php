@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\BuilderRequest;
 use App\Models\Builder;
 use App\Models\Advertisement;
 use App\Http\Requests\FiltrRequest;
+use App\Http\Resources\AdvertisementResource;
 
-class BuildingsController extends Controller
+class ApiController extends Controller
 {
-    public function all(FiltrRequest $req){
+    public function getAdvertisements(FiltrRequest $req){
         $novostroyki = Advertisement::query()->with('builder');
         
         if (($req->price_start != null)){
@@ -73,44 +75,15 @@ class BuildingsController extends Controller
             $novostroyki->where('nalbl', $req->nalbl);
         }
 
-        $novostroyki = $novostroyki->orderBy('price')->paginate(10);        
-        if($req->clear){
-            $novostroyki = Advertisement::with('builder')->orderBy('GK')->paginate(10);
-        }
+        $novostroyki = $novostroyki->orderBy('price')->paginate(10);
 
-      //global $where;      
-    //   $novostroyki = Advertisement::with('builder')->orderBy('GK')->paginate(10);      
-      //$novostroyki = Novostroyki::all();
-      //dump($GLOBALS['where']);
-
-      //$novostroyki = DB::select('select * from advertisements where price >= 3810000 and price <= 5000000 and rajon = "Индустриальный" and otdelka = "чистовая" order by price');
-      //$novostroyki = DB::select('select * from advertisements where '.$where.' order by price');
-
-      //dd($novostroyki[0]->price);
-      // foreach ($novostroyki as $novostroyka) {
-      //   foreach ($builders as $builder) {
-      //     if ($novostroyka->builder == $builder->builder){
-      //       return view('main', ['elem' => $novostroyka, 'builders' => $builder]);
-      //       //echo $novostroyka->GK." - ".$builder->builder."</br>";
-      //     }
-      //   }
-      // }
-        return view('main', ['data' => $novostroyki]);
+        return AdvertisementResource::collection($novostroyki);
     }
 
-    public function help(){
-        return view('help');
-    }
-
-    public function editShow(){     
-        $builders = Builder::get();
-        return view('edit', ['builders' => $builders]);
-    }
-
-    public function edit(FiltrRequest $request){
+    public function createAdvertisements(FiltrRequest $request){
         $data = $request->validated();
 
-        Advertisement::create([
+        $new_advertisment = Advertisement::create([
             'price' => $data['price'],           
             'squaretotal' => $data['squaretotal'],            
             'squarelive' => $data['squarelive'],            
@@ -125,10 +98,11 @@ class BuildingsController extends Controller
             'countroom' => $data['countroom'],            
             'otdelka' => $data['otdelka'],
             'nalbl' => $data['nalbl'],
-            'builder_id' => $data['builder'],
+            'builder_id' => $request->input('builder_id'),
             'photo' => $data['photo']->store('img', 'public')
         ]);
-        return redirect()->route('editShow');
+
+        return new AdvertisementResource($new_advertisment);
     }
 
     public function addBuilder(BuilderRequest $request){

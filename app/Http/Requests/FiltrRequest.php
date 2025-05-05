@@ -24,36 +24,39 @@ class FiltrRequest extends FormRequest
     public function rules()
     {
         return [
-          'price_start' => 'numeric|nullable',
-          'price_end' => 'numeric|nullable',
-          'squaretotal_start' => 'numeric|nullable',
-          'squaretotal_end' => 'numeric|nullable',
-          'squarelive_start' => 'numeric|nullable',
-          'squarelive_end' => 'numeric|nullable',
+          'price' => 'numeric|nullable',
+          'squaretotal' => 'numeric|nullable',
+          'squarelive' => 'numeric|nullable',
           'yearhouse' => 'numeric|nullable',
-          'levelhouse_start' => 'numeric|nullable',
-          'levelhouse_end' => 'numeric|nullable',
-          'level_start' => 'numeric|nullable',
-          'level_end' => 'numeric|nullable',
-          'countroom_start' => 'numeric|nullable',
-          'countroom_end' => 'numeric|nullable'
+          'levelhouse' => 'numeric|nullable',
+          'level' => 'numeric|nullable',
+          'countroom' => 'numeric|nullable',
+          'photo' => 'nullable',
+          'rajon' => 'string',
+          'GK' => 'string',
+          'street' => 'string',
+          'numberhouse' => 'string',
+          'typehouse' => 'string',
+          'otdelka' => 'string',
+          'nalbl' => 'string',
+          'builder' => 'numeric'
         ];
     }
 
     public function messages(){
       return [
-        'price_start.numeric' => 'Поле "Цена" является числовым. Введите число - цену квартиры.',
+        'price.numeric' => 'Поле "Цена" является числовым. Введите число - цену квартиры.',
         'price_end.numeric' => 'Поле "Цена" является числовым. Введите число - цену квартиры.',
-        'squaretotal_start.numeric' => 'Поле "Общая площадь" является числовым. Введите число - общую площадь квартиры.',
+        'squaretotal.numeric' => 'Поле "Общая площадь" является числовым. Введите число - общую площадь квартиры.',
         'squaretotal_end.numeric' => 'Поле "Общая площадь" является числовым. Введите число - общую площадь квартиры.',
-        'squarelive_start.numeric' => 'Поле "Жилая площадь" является числовым. Введите число - жилую площадь квартиры.',
+        'squarelive.numeric' => 'Поле "Жилая площадь" является числовым. Введите число - жилую площадь квартиры.',
         'squarelive_end.numeric' => 'Поле "Жилая площадь" является числовым. Введите число - жилую площадь квартиры.',
         'yearhouse.numeric' => 'Поле "Год сдачи" является числовым. Введите число - год сдачи дома.',
-        'levelhouse_start.numeric' => 'Поле "Этажность дома" является числовым. Введите число - этажность дома.',
+        'levelhouse.numeric' => 'Поле "Этажность дома" является числовым. Введите число - этажность дома.',
         'levelhouse_end.numeric' => 'Поле "Этажность дома" является числовым. Введите число - этажность дома.',
-        'level_start.numeric' => 'Поле "Этаж" является числовым. Введите число - этаж квартиры.',
+        'level.numeric' => 'Поле "Этаж" является числовым. Введите число - этаж квартиры.',
         'level_end.numeric' => 'Поле "Этаж" является числовым. Введите число - этаж квартиры.',
-        'countroom_start.numeric' => 'Поле "Количество комнат" является числовым. Введите число - количество комнат.',
+        'countroom.numeric' => 'Поле "Количество комнат" является числовым. Введите число - количество комнат.',
         'countroom_end.numeric' => 'Поле "Количество комнат" является числовым. Введите число - количество комнат.'
       ];
     }
